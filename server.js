@@ -6,8 +6,7 @@ var path = require("path");
 
 var app = express();
 
-require("./app/routing/apiRoutes.js")(app);
-require("./app/routing/htmlRoutes.js")(app);
+
 
 app.use(express.static("."));
 app.use(express.static(path.join(__dirname, '/public')));
@@ -20,16 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-
-app.post("/api/friends" , function(req,res){
-    var newData = req.body;
-    friendsData.push(newData);
-    // res.send(true)
-})
-
-
-
-
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 app.listen(PORT, function(){
     console.log(" App listening on PORT: " + PORT);

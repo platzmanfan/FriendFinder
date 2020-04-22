@@ -4,9 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
@@ -162,6 +161,8 @@
               </div>
             </div>
 </div>
+</body>
+</html>
 <script type="text/javascript">
 $("#submit").on("click",function(event){
   event.preventDefault();
@@ -174,8 +175,9 @@ $("#submit").on("click",function(event){
       }
     });
     $(".select").each(function(){
-      if($(this).val() === ""){
+      if($(this).val() === "" || $(this).val() === null){
         isvalid=false;
+       
       }
     });
     return isvalid
@@ -184,7 +186,7 @@ $("#submit").on("click",function(event){
     var userData = {
       name: $("#name").val().trim(),
       photo:$("#photo").val().trim(),
-      score:[
+      scores:[
         $("#question1").val(),
         $("#question2").val(),
         $("#question3").val(),
@@ -199,22 +201,30 @@ $("#submit").on("click",function(event){
       ]
       
     };
-    console.log(userData);
+    // console.log(userData)
     $.post("/api/friends", userData, function(data){
-      $("#modal-title").text(userData.name);
-      $("#modal-img").attr("src",userData.photo);
-
+      // $("#modal-title").text(data.name);
+      // $("#modal-img").attr("src",data.photo);
+      
+      console.log(userData);
       $("#r-modal").modal("toggle");
-
+      
     });
   }
   else{
     alert("INSERT ALL OF THE LINES AND SELECT ALL OF THE QUESITONS")
   }
 
-
-
 });
+
+//not needed
+function runDataquery(){
+  $.ajax({url: "api/friends", method: "GET"})
+  .then(function(friendsData){
+    console.log(friendsData)
+    console.log("--------------------")
+  });
+}
+runDataquery();
 </script>
-  </body>
-</html>
+ 

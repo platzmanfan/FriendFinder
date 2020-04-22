@@ -31,5 +31,5 @@ var friendsData = [
             "2"
         ]
     }
-]
+];
 module.exports = friendsData;

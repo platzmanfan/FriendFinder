@@ -1,3 +1,6 @@
+.jumbotron{
+    background-color: lightgrey;
+}
 .modal {
     position: fixed;
     width:100%;
