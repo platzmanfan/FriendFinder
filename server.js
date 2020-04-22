@@ -9,6 +9,7 @@ var app = express();
 
 
 app.use(express.static("."));
+
 // Expose the public directory to access CSS files
 app.use(express.static(path.join(__dirname, './app/public')));
 
