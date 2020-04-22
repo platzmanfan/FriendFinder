@@ -4,12 +4,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery.js"></script>
+  
     <link rel="stylesheet" href="/css/style.css">
     <title>Survey</title>
   </head>
@@ -131,7 +133,7 @@
           <br>
           <br>
           <br>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" data-toggle="modal" data-target="#r-modal">
             Submit</button>
             <br>
             <hr>
@@ -140,18 +142,18 @@
                 <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/platzmanfan/friendfinder">GitHub Repo</a></p>
               </div>
             </footer>
-            <div id="rmodal" class="modal fade" role="dialog">
+            <div id="r-modal" class="modal fade" role="dialog">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5>Best Match: </h5><h5 id="modal-title"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <p id ="modal-name">Modal body text goes here.</p>
-                    <img id="modal-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt=""></img>
+                    
+                    <h5>Image Link: </h5><img id="modal-img" src="" alt=""></img>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -180,8 +182,8 @@ $("#submit").on("click",function(event){
   }
   if(checkIfValid()){
     var userData = {
-      name: $("#name").val(),
-      photo:$('#photo').val(),
+      name: $("#name").val().trim(),
+      photo:$("#photo").val().trim(),
       score:[
         $("#question1").val(),
         $("#question2").val(),
@@ -195,12 +197,14 @@ $("#submit").on("click",function(event){
         $("#question10").val()
 
       ]
+      
     };
+    console.log(userData);
     $.post("/api/friends", userData, function(data){
-      $("#modal-name").text(data.name);
-      $("#modal-img").attr("src",data.photo);
+      $("#modal-title").text(userData.name);
+      $("#modal-img").attr("src",userData.photo);
 
-      $("#rmodal").modal("toggle");
+      $("#r-modal").modal("toggle");
 
     });
   }
