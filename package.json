@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/platzmanfan/FriendFinder/issues"
   },
-  "homepage": "https://github.com/platzmanfan/FriendFinder#readme"
+  "homepage": "https://github.com/platzmanfan/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
