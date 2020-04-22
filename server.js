@@ -9,7 +9,8 @@ var app = express();
 
 
 app.use(express.static("."));
-app.use(express.static(path.join(__dirname, '/public')));
+// Expose the public directory to access CSS files
+app.use(express.static(path.join(__dirname, './app/public')));
 
 
 var PORT  = process.env.PORT || 8000;
@@ -24,4 +25,5 @@ require("./app/routing/htmlRoutes.js")(app);
 
 app.listen(PORT, function(){
     console.log(" App listening on PORT: " + PORT);
+    
 })

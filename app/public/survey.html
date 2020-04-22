@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/app/public/css/style.css">
     <title>Survey</title>
   </head>
   <body>
@@ -152,7 +152,7 @@
                   </div>
                   <div class="modal-body">
                     
-                    <h5>Image Link: </h5><img id="modal-img" src="" alt=""></img>
+                    <h5>Image Link: </h5><img id="modal-img" width="550" src="" alt=""></img>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -183,7 +183,7 @@ $("#submit").on("click",function(event){
     return isvalid
   }
   if(checkIfValid()){
-    var userData = {
+    var userInput = {
       name: $("#name").val().trim(),
       photo:$("#photo").val().trim(),
       scores:[
@@ -202,11 +202,11 @@ $("#submit").on("click",function(event){
       
     };
     // console.log(userData)
-    $.post("/api/friends", userData, function(data){
-      // $("#modal-title").text(data.name);
-      // $("#modal-img").attr("src",data.photo);
+    $.post("/api/friends", userInput, function(data){
+      $("#modal-title").text(data.matchName);
+      $("#modal-img").attr("src", data.matchPicture);
       
-      console.log(userData);
+      // console.log(userData);
       $("#r-modal").modal("toggle");
       
     });
