@@ -8,7 +8,7 @@ Friend Finder is an application that implements 10 questions being asked by the 
 # Demo
 -
 
-Friend Finder is deplyoed to Heroku! You can see it [here](http://github.com)
+Friend Finder is deplyoed to Heroku! You can see it [here](https://friendfinder1995.herokuapp.com)
 
 ## Installation
 -
